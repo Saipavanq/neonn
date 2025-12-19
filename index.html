@@ -298,7 +298,7 @@
                     <div class="terminal-bg-gradient"></div>
                     <label class="terminal-label"><span class="terminal-arrow">➜</span><span class="font-bold">WHICH SEMESTER</span><span class="terminal-blink">▋</span></label>
                     <div class="input-wrapper">
-                        <input class="terminal-input" placeholder="➤ ENTER THE SEM (e.g., 1)" id="sem-input" type="text" />
+                        <input class="terminal-input" placeholder="➤ ENTER THE SEM (e.g., 4)" id="sem-input" type="text" />
                         <div class="input-icon"><svg stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path></svg></div>
                     </div>
                     <div id="terminal-logs"></div>
@@ -466,16 +466,25 @@
             const semInput = document.getElementById('sem-input');
             const terminalLogs = document.getElementById('terminal-logs');
 
-            // --- DATA UPDATE: Added your file here ---
+            // --- DATA UPDATE ---
             const semesterResources = {
                 "1": [
-                    { code: "CSE1005", name: "Computer Science (Short)", files: ["CSE1005SHORT.pdf"] },
                     { code: "CHY1009", name: "Engineering Chemistry", files: ["2023_Paper.pdf"] },
                     { code: "CSE1012", name: "Problem Solving using C", files: ["Lab_Manual.pdf"] },
                     { code: "ECE1002", name: "Semiconductor Physics", files: ["Notes_Unit1.pdf"] },
                     { code: "ENG1001", name: "Technical English", files: ["Grammar_Rules.pdf"] },
                     { code: "MATH1001", name: "Calculus & Linear Algebra", files: ["Formula_Sheet.pdf"] },
                     { code: "MGT1001", name: "Principles of Management", files: ["Case_Studies.pdf"] }
+                ],
+                "4": [
+                    { 
+                        code: "CSE1005", 
+                        name: "Computer Architecture and Organization", 
+                        files: ["CSE1005.1.pdf", "CSE1005.2.pdf", "CSE1005.pdf"] 
+                    },
+                    // Placeholder courses for Sem 4
+                    { code: "CSE2005", name: "Operating Systems", files: [] },
+                    { code: "CSE2004", name: "DBMS", files: [] }
                 ]
             };
 
@@ -493,15 +502,22 @@
                     filesContainer.className = 'log-line success';
                     filesContainer.innerHTML = `> FILES FOUND FOR ${courseCode}:`;
                     
-                    fileList.forEach(file => {
-                        const link = document.createElement('a');
-                        // --- LINK UPDATE: Removed 'pdfs/' so it finds your file ---
-                        link.href = file; 
-                        link.className = 'file-link';
-                        link.textContent = `[DOWNLOAD] ${file}`;
-                        link.setAttribute('download', file);
-                        filesContainer.appendChild(link);
-                    });
+                    if(fileList.length > 0) {
+                        fileList.forEach(file => {
+                            const link = document.createElement('a');
+                            link.href = file; // Direct link to root
+                            link.className = 'file-link';
+                            link.textContent = `[DOWNLOAD] ${file}`;
+                            link.setAttribute('download', file);
+                            filesContainer.appendChild(link);
+                        });
+                    } else {
+                        const noFiles = document.createElement('div');
+                        noFiles.style.marginLeft = '2rem';
+                        noFiles.style.color = '#666';
+                        noFiles.textContent = "[NO FILES UPLOADED YET]";
+                        filesContainer.appendChild(noFiles);
+                    }
                     
                     terminalLogs.prepend(filesContainer);
                 }, 600);
