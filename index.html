@@ -80,8 +80,8 @@
             letter-spacing: 1px;
         }
 
-        .matrix-column:nth-child(odd)::before { content: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン123456789"; }
-        .matrix-column:nth-child(even)::before { content: "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴァィゥェォャュョッABCDEFGHIJKLMNOPQRSTUVWXYZ"; }
+        .matrix-column:nth-child(odd)::before { content: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン1"; }
+        .matrix-column:nth-child(even)::before { content: "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴァィゥェォャュョッ"; }
         
         @keyframes fall {
             0% { transform: translateY(-20%); opacity: 1; }
@@ -134,7 +134,8 @@
         .toggle-btn {
             position: fixed;
             top: 20px;
-            left: 20px;
+            /* CHANGED POSITION: Right side, next to logout */
+            right: 160px; 
             z-index: 200;
             background: rgba(0,0,0,0.8);
             border: 2px solid var(--neon-green);
