@@ -34,17 +34,87 @@
         }
 
         /* --- MATRIX BACKGROUND --- */
-        .matrix-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: -100; overflow: hidden; display: block; }
-        .matrix-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .matrix-column { position: absolute; top: -100%; width: 20px; height: 100%; font-size: 16px; line-height: 18px; font-weight: bold; animation: fall linear infinite; white-space: nowrap; opacity: 0.8; }
-        .matrix-column::before { content: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; position: absolute; top: 0; left: 0; background: linear-gradient(to bottom, #ffffff 0%, #ffffff 5%, #00ff41 10%, #00ff41 20%, #00dd33 30%, #00bb22 40%, #009911 50%, #007700 60%, #005500 70%, #003300 80%, rgba(0, 255, 65, 0.5) 90%, transparent 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; writing-mode: vertical-lr; letter-spacing: 1px; }
+        .matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: -100;
+            overflow: hidden;
+            display: block; 
+        }
+
+        .matrix-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            width: 20px;
+            height: 100%;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: bold;
+            animation: fall linear infinite;
+            white-space: nowrap;
+            opacity: 0.8;
+        }
+
+        .matrix-column::before {
+            content: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 5%, #00ff41 10%, #00ff41 20%, #00dd33 30%, #00bb22 40%, #009911 50%, #007700 60%, #005500 70%, #003300 80%, rgba(0, 255, 65, 0.5) 90%, transparent 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            writing-mode: vertical-lr;
+            letter-spacing: 1px;
+        }
+
         .matrix-column:nth-child(odd)::before { content: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン123456789"; }
         .matrix-column:nth-child(even)::before { content: "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴァィゥェォャュョッABCDEFGHIJKLMNOPQRSTUVWXYZ"; }
-        @keyframes fall { 0% { transform: translateY(-20%); opacity: 1; } 100% { transform: translateY(120%); opacity: 0; } }
+        
+        @keyframes fall {
+            0% { transform: translateY(-20%); opacity: 1; }
+            100% { transform: translateY(120%); opacity: 0; }
+        }
 
         /* --- LOADER --- */
-        #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; }
-        .loader { position: relative; width: 150px; height: 150px; background: transparent; border-radius: 50%; box-shadow: 25px 25px 75px rgba(0,0,0,0.55); border: 1px solid #333; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 25px 25px 75px rgba(0,0,0,0.55);
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
         .loader::before { content: ''; position: absolute; inset: 20px; background: transparent; border: 1px dashed #444; border-radius: 50%; box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25), inset 5px 5px 35px rgba(0,0,0,0.25); }
         .loader::after { content: ''; position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px dashed #444; box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25), inset 5px 5px 35px rgba(0,0,0,0.25); }
         .loader span { position: absolute; top: 50%; left: 50%; width: 50%; height: 100%; background: transparent; transform-origin: top left; animation: radar81 2s linear infinite; border-top: 1px dashed #fff; }
@@ -57,27 +127,128 @@
         .dashboard-view { display: none; flex-direction: column; align-items: center; width: 100%; padding-top: 80px; box-sizing: border-box; }
         .page-section { display: none; width: 100%; animation: fadeIn 0.5s ease-in; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 50px; padding-bottom: 50px; }
         .page-section.active { display: flex; }
+        
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- SIDEBAR & HEADER --- */
-        .toggle-btn { position: fixed; top: 20px; left: 20px; z-index: 200; background: rgba(0,0,0,0.8); border: 2px solid var(--neon-green); color: var(--neon-green); padding: 10px 15px; font-size: 1.5rem; cursor: pointer; border-radius: 5px; box-shadow: 0 0 10px var(--neon-green); transition: 0.3s; }
+        /* --- SIDEBAR NAVIGATION (Left Side) --- */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px; 
+            z-index: 200;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px var(--neon-green);
+            transition: 0.3s;
+        }
         .toggle-btn:hover { background: var(--neon-green); color: black; }
-        .sidebar { position: fixed; top: 0; left: -300px; width: var(--sidebar-width); height: 100%; background: rgba(0, 0, 0, 0.95); border-right: 2px solid var(--dark-green); z-index: 150; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding-top: 80px; box-shadow: 5px 0 30px rgba(0, 255, 65, 0.1); }
-        .sidebar.open { left: 0; border-right: 2px solid var(--neon-green); }
-        .nav-link { padding: 15px 30px; color: #888; text-decoration: none; font-family: var(--font-SpaceMono); font-size: 1.1rem; text-transform: uppercase; transition: 0.2s; border-left: 3px solid transparent; cursor: pointer; }
-        .nav-link:hover, .nav-link.active { color: var(--neon-green); background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding-left: 40px; text-shadow: 0 0 8px rgba(57, 255, 20, 0.4); }
-        
-        .header-controls { position: fixed; top: 20px; right: 20px; z-index: 200; display: none; align-items: center; gap: 20px; }
-        
-        /* MATRIX TOGGLE */
-        .matrix-toggle-wrapper { position: relative; display: inline-block; width: 60px; height: 34px; }
-        .matrix-toggle-wrapper input { opacity: 0; width: 0; height: 0; }
-        .matrix-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; transition: .4s; border-radius: 34px; }
-        .matrix-slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: #aaa; transition: .4s; border-radius: 50%; }
-        input:checked + .matrix-slider { background-color: #fff; }
-        input:checked + .matrix-slider:before { transform: translateX(26px); background-color: #39ff14; box-shadow: 0 0 10px #39ff14; }
 
-        /* LOGOUT BTN */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Hidden by default */
+            width: var(--sidebar-width);
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            border-right: 2px solid var(--dark-green);
+            z-index: 150;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            box-shadow: 5px 0 30px rgba(0, 255, 65, 0.1);
+        }
+
+        .sidebar.open {
+            left: 0;
+            border-right: 2px solid var(--neon-green);
+        }
+
+        .nav-link {
+            padding: 15px 30px;
+            color: #888;
+            text-decoration: none;
+            font-family: var(--font-SpaceMono);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--neon-green);
+            background: rgba(57, 255, 20, 0.05);
+            border-left: 3px solid var(--neon-green);
+            padding-left: 40px; /* Slight movement effect */
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+        }
+
+        /* --- HEADER CONTROLS (Top Right) --- */
+        .header-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            display: none; /* Hidden on login, shown on dashboard */
+            align-items: center;
+            gap: 20px; /* Space between toggle and logout */
+        }
+
+        /* --- THE MATRIX TOGGLE --- */
+        .matrix-toggle-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .matrix-toggle-wrapper input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+
+        .matrix-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff; /* White Track */
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .matrix-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #aaa; /* Gray thumb when OFF */
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .matrix-slider {
+            background-color: #fff; /* Track stays white */
+        }
+
+        input:checked + .matrix-slider:before {
+            transform: translateX(26px);
+            background-color: #39ff14; /* Neon Green thumb when ON */
+            box-shadow: 0 0 10px #39ff14;
+        }
+
+        /* --- LOGOUT BUTTON --- */
         .Btn { display: flex; align-items: center; justify-content: flex-start; width: 45px; height: 45px; border: none; border-radius: 50%; cursor: pointer; position: relative; overflow: hidden; transition-duration: .3s; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199); background-color: rgb(255, 65, 65); }
         .sign { width: 100%; transition-duration: .3s; display: flex; align-items: center; justify-content: center; }
         .sign svg { width: 17px; fill: white; }
@@ -87,7 +258,7 @@
         .Btn:hover .text { opacity: 1; width: 70%; transition-duration: .3s; padding-right: 10px; }
         .Btn:active { transform: translate(2px ,2px); }
 
-        /* --- COURSES ALERT BOX STYLES --- */
+        /* --- STYLES FOR THE ALERT BOXES (Courses) --- */
         .space-y-2 > * + * { margin-top: 0.5rem; }
         .p-4 { padding: 1rem; }
         .p-2 { padding: 0.5rem; }
@@ -100,12 +271,14 @@
         .h-5 { height: 1.25rem; }
         .w-5 { width: 1.25rem; }
         .border-l-4 { border-left-width: 4px; }
+        
         .alert-green { background-color: #dcfce7; border-color: #22c55e; color: #14532d; }
         .alert-blue { background-color: #dbeafe; border-color: #3b82f6; color: #1e3a8a; }
         .alert-yellow { background-color: #fef9c3; border-color: #eab308; color: #713f12; }
         .alert-red { background-color: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
-        .alert-box { transition: transform 0.2s; cursor: pointer; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
-        .alert-box:hover { transform: scale(1.02); filter: brightness(1.1); }
+        
+        .alert-box { transition: transform 0.3s; cursor: pointer; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
+        .alert-box:hover { transform: scale(1.02); }
         .file-link { display: block; margin-left: 2rem; color: #39ff14; text-decoration: none; padding: 5px 0; font-size: 0.9rem; border-bottom: 1px dashed #333; transition: color 0.3s; }
         .file-link:hover { color: #fff; }
 
@@ -128,7 +301,7 @@
         .radio-inputs input:checked ~ .radio-item { background-color: #4d4a45; font-weight: 600; color: #fff; }
         .radio-inputs input:checked ~ .radio { clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%); }
 
-        /* --- HERO & DASHBOARD --- */
+        /* --- HERO SECTION --- */
         .hero-container { text-align: left; max-width: 900px; padding: 0 40px; margin-top: 50px; }
         .hero-title { font-family: var(--font-Inter); font-weight: 800; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: white; }
         .text-blue-gradient { background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -137,7 +310,7 @@
         .start-btn { background-color: #67e8f9; color: #000; border: none; padding: 14px 28px; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: var(--font-Inter); transition: transform 0.2s, background-color 0.2s; }
         .start-btn:hover { transform: scale(1.05); background-color: #22d3ee; }
 
-        /* --- 3D CARD --- */
+        /* --- 3D CARD & SOCIALS --- */
         .parent { width: 290px; height: 300px; perspective: 1000px; }
         .card { height: 100%; border-radius: 50px; background: linear-gradient(135deg, rgb(0, 255, 214) 0%, rgb(8, 226, 96) 100%); transition: all 0.5s ease-in-out; transform-style: preserve-3d; box-shadow: rgba(5, 71, 17, 0) 40px 50px 25px -40px, rgba(5, 71, 17, 0.2) 0px 25px 25px -5px; }
         .glass { transform-style: preserve-3d; position: absolute; inset: 8px; border-radius: 55px; border-top-right-radius: 100%; background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%); transform: translate3d(0px, 0px, 25px); border-left: 1px solid white; border-bottom: 1px solid white; transition: all 0.5s ease-in-out; }
@@ -372,7 +545,7 @@
                         </div>
                         <div class="down">
                           <button class="card3"><svg class="github" width="30" height="30" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
-                          <button class="card4"><svg class="discord" width="30" height="30" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/></svg></button>
+                          <button class="card4"><svg class="discord" width="30" height="30" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/></svg></button>
                         </div>
                     </div>
                 </div>
@@ -461,26 +634,21 @@
                 });
             }
 
-            // COURSE SEARCH LOGIC (Updated to show download links on click)
+            // COURSE SEARCH LOGIC
             const semInput = document.getElementById('sem-input');
             const terminalLogs = document.getElementById('terminal-logs');
 
-            // Data: Courses and their specific files
+            // --- DATA UPDATE: Added your file here ---
             const semesterResources = {
                 "1": [
-                    { code: "CHY1009", name: "Engineering Chemistry", files: ["2023_Paper.pdf", "2024_Paper.pdf"] },
-                    { code: "CSE1012", name: "Problem Solving using C", files: ["Lab_Manual.pdf", "Prev_Year_Q.pdf"] },
-                    { code: "ECE1002", name: "Semiconductor Physics", files: ["Notes_Unit1.pdf", "Assignment_1.pdf"] },
-                    { code: "ENG1001", name: "Technical English", files: ["Grammar_Rules.pdf"] },
-                    { code: "MATH1001", name: "Calculus & Linear Algebra", files: ["Formula_Sheet.pdf", "2022_Paper.pdf"] },
-                    { code: "MGT1001", name: "Principles of Management", files: ["Case_Studies.pdf"] }
+                    { code: "CSE1005", name: "Computer Science (Short)", files: ["CSE1005SHORT.pdf"] },
+                    { code: "CHY1009", name: "Engineering Chemistry", files: ["2023_Paper.pdf"] },
+                    { code: "ECE1002", name: "Semiconductor Physics", files: ["Notes_Unit1.pdf"] }
                 ]
-                // Add more semesters here if needed...
             };
 
             const alertColors = ['green', 'blue', 'yellow', 'red'];
 
-            // Function to show resources for a specific course
             window.showResources = function(courseCode, fileList) {
                 const resourceLog = document.createElement('div');
                 resourceLog.className = 'log-line processing';
@@ -494,9 +662,9 @@
                     filesContainer.innerHTML = `> FILES FOUND FOR ${courseCode}:`;
                     
                     fileList.forEach(file => {
-                        // Creating a fake download link (user would replace href with real path)
                         const link = document.createElement('a');
-                        link.href = `pdfs/${file}`; // Placeholder path
+                        // --- LINK UPDATE: Removed 'pdfs/' so it finds your file ---
+                        link.href = file; 
                         link.className = 'file-link';
                         link.textContent = `[DOWNLOAD] ${file}`;
                         link.setAttribute('download', file);
@@ -528,7 +696,6 @@
 
                                 semesterResources[sem].forEach((course, index) => {
                                     const color = alertColors[index % alertColors.length];
-                                    // We stringify the file list to pass it to the function
                                     const filesString = JSON.stringify(course.files).replace(/"/g, '&quot;');
                                     
                                     const alertHTML = `
@@ -554,7 +721,6 @@
             }
         });
 
-        // --- NEW FEATURES LOGIC ---
         function addSubjectRow() {
             const container = document.getElementById('calculator-rows');
             const newRow = document.createElement('div');
@@ -601,5 +767,6 @@
             input.value = '';
         }
     </script>
+
 </body>
 </html>
